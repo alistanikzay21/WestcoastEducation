@@ -11,4 +11,14 @@ public class Course
     public required CourseTypeEnum CourseType { get; set; }
     public required DateOnly StartDate { get; set; }
     public required DateOnly EndDate { get; set; }
+
+    public override string ToString()
+    {
+        return $"Kursnummer: {CourseNumber}\n" +
+               $"Kursnamn: {Titel}\n" +
+               $"Kurslängd: {Length} {LengthUnit}\n" +
+               $"Typ: {CourseType}\n" +
+               $"Startdatum: {StartDate}\n" +
+               $"Slutdatum: {EndDate}";
+    } 
 }
