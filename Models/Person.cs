@@ -10,4 +10,14 @@ public class Person
     public required string PostalCode { get; set; }
     public required string City { get; set; }
 
+    public override string ToString()
+    {
+        return $"Namn: {FirstName} {LastName}\n" +
+               $"Telefonnummer: {PhoneNumber}\n" +
+               $"Personnummer: {PersonalNumber}\n" + 
+               $"Adress: {Adress}\n" +
+               $"Postnummer: {PostalCode}\n" +
+               $"Ort: {City}";
+    }
+
 }
