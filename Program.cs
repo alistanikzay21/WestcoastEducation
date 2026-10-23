@@ -69,5 +69,28 @@ class Program
         {
             Console.Write("Ange ett positivt heltal: ");
         }
+
+         Console.Write("Ange 1 för veckor eller 2 för dagar: ");
+        string unitChoice = Console.ReadLine() ?? "";
+
+        while (unitChoice != "1" && unitChoice != "2")
+        {
+            Console.Write("Välj 1 för veckor eller 2 för dagar: ");
+            unitChoice = Console.ReadLine() ?? "";
+        }
+
+         LengthUnitEnum lengthUnit;
+
+        if (unitChoice == "1")
+
+        {
+            lengthUnit = LengthUnitEnum.Weeks;
+        }
+
+        else
+        
+        {
+            lengthUnit = LengthUnitEnum.Days;
+        }
     }    
 }
