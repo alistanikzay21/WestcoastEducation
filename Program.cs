@@ -1,4 +1,5 @@
-﻿using WestcoastEducation.Services;
+﻿
+using WestcoastEducation.Services;
 
 namespace WestcoastEducation;
 
@@ -17,6 +18,7 @@ class Program
             Console.WriteLine("2. Lista kurser");
             Console.WriteLine("3. Lägg till student");
             Console.WriteLine("4. Lista studenter");
+            Console.WriteLine("5. Lägg till lärare");
             Console.WriteLine("0. Avsluta");
             Console.Write("Välj alternativ: ");
 
@@ -38,6 +40,10 @@ class Program
 
                 case "4":
                     educationService.ListStudents();
+                    break;
+
+                case "5":
+                    educationService.AddTeacher();
                     break;
 
                 case "0":

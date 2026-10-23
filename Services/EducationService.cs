@@ -154,6 +154,34 @@ public class EducationService
         }
     }
 
+     public void AddTeacher()
+    {
+        Console.WriteLine("\n--- Lägg till lärare ---");
+
+        Person person = new()
+        {
+            FirstName = ReadRequiredText("Förnamn: "),
+            LastName = ReadRequiredText("Efternamn: "),
+            PhoneNumber = ReadRequiredText("Telefonnummer: "),
+            PersonalNumber = ReadRequiredText("Personnummer: "),
+            Adress = ReadRequiredText("Adress: "),
+            PostalCode = ReadRequiredText("Postnummer: "),
+            City = ReadRequiredText("Ort: ")
+        };
+
+        string knowledgeArea = ReadRequiredText("Kunskapsområde: ");
+
+        Teacher teacher = new()
+        {
+            PersonalInformation = person,
+            KnowledgeArea = knowledgeArea
+        };
+
+        teachers.Add(teacher);
+
+        Console.WriteLine("Läraren har lagts till!");
+    }
+
     private static string ReadRequiredText(string prompt)
     {
         Console.Write(prompt);
