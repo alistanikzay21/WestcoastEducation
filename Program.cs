@@ -187,5 +187,25 @@ class Program
 
             Console.WriteLine("Studenten har lagts till!");
         }
+
+        static void ListStudents()
+        {
+            Console.WriteLine("\n--- Studenter ---");
+
+            if (students.Count == 0)
+            {
+                Console.WriteLine("Det finns inga studenter att visa");
+            }
+
+            else
+            {
+                foreach (Student student in students)
+                {
+                    Console.WriteLine($"\n{student}");
+                }
+            }
+        }
+
+        
     }
 }
