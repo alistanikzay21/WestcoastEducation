@@ -113,6 +113,24 @@ class Program
             courseType = CourseTypeEnum.Distance;
         }
 
+          Console.Write("Startdatum (ÅÅÅÅ-MM-DD): ");
+        DateOnly startDate;
+
+        while (!DateOnly.TryParse(Console.ReadLine(), out startDate))
+        {
+            Console.Write("Ogiltigt datum. Försök igen (ÅÅÅÅ-MM-DD): ");
+        }
+
+        Console.Write("Slutdatum (ÅÅÅÅ-MM-DD): ");
+        DateOnly endDate;
+
+          while (!DateOnly.TryParse(Console.ReadLine(), out endDate)
+               || endDate < startDate)
+        {
+            Console.Write("Ange ett giltigt slutdatum som inte är före startdatumet: ");
+        }
+
         
+
     }    
 }
