@@ -206,6 +206,23 @@ class Program
             }
         }
 
-        
+        static string ReadPersonField(string prompt)
+        {
+            Console.WriteLine(prompt);
+            return ReadRequiredTest();
+        }
+
+        static string ReadRequiredText()
+        {
+            static input = Console.ReadLine() ?? "";
+
+            while (string.IsNullOrWHiteSpace(input))
+            {
+                Console.Write("Fältet får inte vara tomt. Försök igen: ");
+                input = Console.WriteLine() ?? "";
+            }
+
+            return input;
+        }
     }
 }
