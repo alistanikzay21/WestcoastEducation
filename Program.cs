@@ -21,6 +21,8 @@ class Program
             Console.WriteLine("6. Lista lärare");
             Console.WriteLine("7. Lägg till utbildningschef");
             Console.WriteLine("8. Lista utbildningschefer");
+            Console.WriteLine("9. Lägg till administratör");
+            Console.WriteLine("10. Lista administratörer");
             Console.WriteLine("0. Avsluta");
             Console.Write("Välj alternativ: ");
 
@@ -31,40 +33,37 @@ class Program
                 case "1":
                     educationService.AddCourse();
                     break;
-
                 case "2":
                     educationService.ListCourses();
                     break;
-
                 case "3":
                     educationService.AddStudent();
                     break;
-
                 case "4":
                     educationService.ListStudents();
                     break;
-
                 case "5":
                     educationService.AddTeacher();
                     break;
-
                 case "6":
                     educationService.ListTeachers();
                     break;
-
                 case "7":
                     educationService.AddEducationManager();
                     break;
-
                 case "8":
                     educationService.ListEducationManagers();
                     break;
-
+                case "9":
+                    educationService.AddAdministrator();
+                    break;
+                case "10":
+                    educationService.ListAdministrators();
+                    break;
                 case "0":
                     running = false;
                     Console.WriteLine("Programmet avslutas.");
                     break;
-
                 default:
                     Console.WriteLine("Ogiltigt val. Försök igen.");
                     break;
