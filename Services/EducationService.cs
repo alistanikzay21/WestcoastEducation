@@ -118,16 +118,7 @@ public class EducationService
     {
         Console.WriteLine("\n--- Lägg till student ---");
 
-        Person person = new()
-        {
-            FirstName = ReadRequiredText("Förnamn: "),
-            LastName = ReadRequiredText("Efternamn: "),
-            PhoneNumber = ReadRequiredText("Telefonnummer: "),
-            PersonalNumber = ReadRequiredText("Personnummer: "),
-            Adress = ReadRequiredText("Adress: "),
-            PostalCode = ReadRequiredText("Postnummer: "),
-            City = ReadRequiredText("Ort: ")
-        };
+       Person person = ReadPersonInformation();
 
         Student student = new()
         {
@@ -315,7 +306,19 @@ public class EducationService
         Console.WriteLine(administrator);
     }
 }
-
+    private static Person ReadPersonInformation()
+{
+    return new Person
+    {
+        FirstName = ReadRequiredText("Förnamn: "),
+        LastName = ReadRequiredText("Efternamn: "),
+        PhoneNumber = ReadRequiredText("Telefonnummer: "),
+        PersonalNumber = ReadRequiredText("Personnummer: "),
+        Adress = ReadRequiredText("Adress: "),
+        PostalCode = ReadRequiredText("Postnummer: "),
+        City = ReadRequiredText("Ort: ")
+    };
+}
     private static string ReadRequiredText(string prompt)
     {
         Console.Write(prompt);
@@ -329,7 +332,6 @@ public class EducationService
 
         return input;
     }
-
     private static DateOnly ReadDate(string prompt)
     {
         DateOnly date;
