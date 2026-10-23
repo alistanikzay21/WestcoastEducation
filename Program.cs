@@ -130,7 +130,19 @@ class Program
             Console.Write("Ange ett giltigt slutdatum som inte är före startdatumet: ");
         }
 
-        
+         Course course = new()
+        {
+            CourseNumber = courseNumber,
+            Title = title,
+            Length = length,
+            LengthUnit = lengthUnit,
+            CourseType = courseType,
+            StartDate = startDate,
+            EndDate = endDate
+        };
 
-    }    
+        courses.Add(course);
+
+        Console.WriteLine("Kursen har lagts till!");
+    }  
 }
