@@ -19,6 +19,7 @@ class Program
             Console.WriteLine("3. Lägg till student");
             Console.WriteLine("4. Lista studenter");
             Console.WriteLine("5. Lägg till lärare");
+            Console.WriteLine("6. Lista lärare");
             Console.WriteLine("0. Avsluta");
             Console.Write("Välj alternativ: ");
 
@@ -44,6 +45,10 @@ class Program
 
                 case "5":
                     educationService.AddTeacher();
+                    break;
+
+                case "6":
+                    educationService.ListTeachers();
                     break;
 
                 case "0":
