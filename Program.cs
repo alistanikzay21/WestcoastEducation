@@ -1,15 +1,15 @@
-﻿using WestcoastEducation.Enums;
-using WestcoastEducation.Models;
+﻿using WestcoastEducation.Services;
+
+namespace WestcoastEducation;
 
 class Program
 {
-    static List<Course> courses = new();
-    static List<Student> students = new();
-
     static void Main()
     {
+        EducationService educationService = new();
+
         bool running = true;
-        
+
         while (running)
         {
             Console.WriteLine("\n=== Westcoast Education ===");
@@ -25,19 +25,19 @@ class Program
             switch (choice)
             {
                 case "1":
-                    AddCourse();
+                    educationService.AddCourse();
                     break;
 
                 case "2":
-                    ListCourses();
+                    educationService.ListCourses();
                     break;
 
                 case "3":
-                    AddStudent();
+                    educationService.AddStudent();
                     break;
 
                 case "4":
-                    ListStudents();
+                    educationService.ListStudents();
                     break;
 
                 case "0":
