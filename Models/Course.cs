@@ -12,13 +12,13 @@ public class Course
     public required DateOnly StartDate { get; set; }
     public required DateOnly EndDate { get; set; }
 
-    public override string ToString()
-    {
-        return $"Kursnummer: {CourseNumber}\n" +
-               $"Kursnamn: {Titel}\n" +
-               $"Kurslängd: {Length} {LengthUnit}\n" +
-               $"Typ: {CourseType}\n" +
-               $"Startdatum: {StartDate}\n" +
-               $"Slutdatum: {EndDate}";
-    } 
+   public override string ToString()
+{
+    return $"Kursnummer: {CourseNumber}\n" +
+           $"Kursnamn: {Titel}\n" +
+           $"Kurslängd: {Length} {LengthUnit}\n" +
+           $"Typ: {CourseType}\n" +
+           $"Startdatum: {StartDate:yyyy-MM-dd}\n" +
+           $"Slutdatum: {EndDate:yyyy-MM-dd}";
+    }
 }

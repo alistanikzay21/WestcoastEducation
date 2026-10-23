@@ -7,6 +7,7 @@ public class EducationService
 {
     private readonly List<Course> courses = new();
     private readonly List<Student> students = new();
+    private readonly List<Teacher> teachers = new();
 
     public void AddCourse()
     {
