@@ -155,6 +155,7 @@ public class EducationService
     }
 
      public void AddTeacher()
+
     {
         Console.WriteLine("\n--- Lägg till lärare ---");
 
@@ -180,6 +181,23 @@ public class EducationService
         teachers.Add(teacher);
 
         Console.WriteLine("Läraren har lagts till!");
+    }
+
+    public void ListTeachers()
+    {
+        Console.WriteLine("\n--- Lärare ---");
+
+        if (teachers.Count == 0)
+        {
+            Console.WriteLine("Det finns inga lärare att visa.");
+            return;
+        }
+
+        foreach (Teacher teacher in teachers)
+        {
+            Console.WriteLine();
+            Console.WriteLine(teacher);
+        }
     }
 
     private static string ReadRequiredText(string prompt)
