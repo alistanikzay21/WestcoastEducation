@@ -162,7 +162,30 @@ class Program
                 Console.WriteLine($"\n{course}");
             }
         }
+
+        static void AddStudent()
+        {
+            Console.WriteLine("\n--- Lägg till student ---");
+
+            Person person = new()
+            {
+                FirstName = ReadPersonField("Förnamn: "),
+                LastName = ReadPersonField("Efternamn: "),
+                Phone = ReadPersonFIeld("Telefon: "),
+                PersonalNumber = ReadPersonField("Personnummer"),
+                Adress = ReadPersonField("Adresss: "),
+                PostalCode = ReadPersonField("Postnummer: "),
+                City = ReadPersonField("Ord: "), 
+            };
+
+            Student student = new()
+            {
+                PersonalInformation = person
+            };
+
+            students.Add(student);
+
+            Console.WriteLine("Studenten har lagts till!");
+        }
     }
-    
-      
 }
