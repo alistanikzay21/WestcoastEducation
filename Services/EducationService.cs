@@ -8,6 +8,7 @@ public class EducationService
     private readonly List<Course> courses = new();
     private readonly List<Student> students = new();
     private readonly List<Teacher> teachers = new();
+    private readonly List<EducationManager> educationManagers = new();
 
     public void AddCourse()
     {
@@ -198,6 +199,44 @@ public class EducationService
             Console.WriteLine();
             Console.WriteLine(teacher);
         }
+    }
+
+    public void AddEducationManager()
+    {
+         Console.WriteLine("\n--- Lägg till utbildningschef ---");
+
+        Person person = new()
+        {
+
+        FirstName = ReadRequiredText("Förnamn: "),
+        LastName = ReadRequiredText("Efternamn: "),
+        PhoneNumber = ReadRequiredText("Telefonnummer: "),
+        PersonalNumber = ReadRequiredText("Personnummer: "),
+        Adress = ReadRequiredText("Adress: "),
+        PostalCode = ReadRequiredText("Postnummer: "),
+        City = ReadRequiredText("Ort: ")
+        };
+
+        string knowledgeArea = ReadRequiredText("Kunskapsområde: ");
+
+        DateOnly employmentDate = ReadDate("Anställningsdatum (ÅÅÅÅ-MM-DD): ");
+
+        Teacher teacher = new()
+        {
+        PersonalInformation = person,
+        KnowledgeArea = knowledgeArea
+        };
+
+        EducationManager educationManager = new()
+        {
+
+        TeacherInformation = teacher,
+        EmploymentDate = employmentDate
+        };
+
+        educationManagers.Add(educationManager);
+
+        Console.WriteLine("Utbildningschefen har lagts till!");
     }
 
     private static string ReadRequiredText(string prompt)
