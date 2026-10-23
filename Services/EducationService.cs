@@ -209,17 +209,17 @@ public class EducationService
 
         educationManagers.Add(educationManager);
 
-        Console.WriteLine("Utbildningschefen har lagts till!");
+        Console.WriteLine("Utbildningsledaren har lagts till!");
     }
     public void ListEducationManagers()
     {
 
-    Console.WriteLine("\n--- Utbildningschefer ---");
+    Console.WriteLine("\n--- Utbildningsledarna ---");
 
     if (educationManagers.Count == 0)
 
     {
-        Console.WriteLine("Det finns inga utbildningschefer att visa.");
+        Console.WriteLine("Det finns inga utbildningsledarna att visa.");
         return;
     }
 
