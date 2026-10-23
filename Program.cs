@@ -88,9 +88,31 @@ class Program
         }
 
         else
-        
+
         {
             lengthUnit = LengthUnitEnum.Days;
         }
+
+         Console.Write("Ange 1 för klassrum eller 2 för distans: ");
+        string typeChoice = Console.ReadLine() ?? "";
+
+        while (typeChoice != "1" && typeChoice != "2")
+        {
+            Console.Write("Välj 1 för klassrum eller 2 för distans: ");
+            typeChoice = Console.ReadLine() ?? "";
+        }
+
+         CourseTypeEnum courseType;
+
+        if (typeChoice == "1")
+        {
+            courseType = CourseTypeEnum.Classroom;
+        }
+        else
+        {
+            courseType = CourseTypeEnum.Distance;
+        }
+
+        
     }    
 }
