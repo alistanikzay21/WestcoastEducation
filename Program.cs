@@ -19,8 +19,8 @@ class Program
             Console.WriteLine("4. Lista studenter");
             Console.WriteLine("5. Lägg till lärare");
             Console.WriteLine("6. Lista lärare");
-            Console.WriteLine("7. Lägg till utbildningschef");
-            Console.WriteLine("8. Lista utbildningschefer");
+            Console.WriteLine("7. Lägg till utbildningsledare");
+            Console.WriteLine("8. Lista utbildningsledarna");
             Console.WriteLine("9. Lägg till administratör");
             Console.WriteLine("10. Lista administratörer");
             Console.WriteLine("0. Avsluta");

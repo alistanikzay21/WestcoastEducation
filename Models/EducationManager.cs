@@ -7,7 +7,7 @@ public class EducationManager
 
     public string GetInformation()
     {
-        return $"UTBILDNINGSCHEF\n{TeacherInformation}\n" +
+        return $"UTBILDNINGSLEDARE\n{TeacherInformation}\n" +
                $"Anställningsdatum: {EmploymentDate}";
     }
     public override string ToString()
