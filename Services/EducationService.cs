@@ -152,16 +152,7 @@ public class EducationService
     {
         Console.WriteLine("\n--- Lägg till lärare ---");
 
-        Person person = new()
-        {
-            FirstName = ReadRequiredText("Förnamn: "),
-            LastName = ReadRequiredText("Efternamn: "),
-            PhoneNumber = ReadRequiredText("Telefonnummer: "),
-            PersonalNumber = ReadRequiredText("Personnummer: "),
-            Adress = ReadRequiredText("Adress: "),
-            PostalCode = ReadRequiredText("Postnummer: "),
-            City = ReadRequiredText("Ort: ")
-        };
+        Person person = ReadPersonInformation();
 
         string knowledgeArea = ReadRequiredText("Kunskapsområde: ");
 
