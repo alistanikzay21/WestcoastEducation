@@ -184,6 +184,60 @@ public class EducationService
         }
     }
 
+    public void AssignCourseToTeacher()
+{
+    if (teachers.Count == 0)
+    {
+        Console.WriteLine("Det finns inga lärare att välja.");
+        return;
+    }
+
+    if (courses.Count == 0)
+    {
+        Console.WriteLine("Det finns inga kurser att välja.");
+        return;
+    }
+
+    Console.WriteLine("\n--- Tilldela kurs till lärare ---");
+
+    for (int i = 0; i < teachers.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {teachers[i].PersonalInformation.FirstName} {teachers[i].PersonalInformation.LastName}");
+    }
+
+    Console.Write("Välj lärare: ");
+    int teacherChoice;
+
+    while (!int.TryParse(Console.ReadLine(), out teacherChoice) ||
+           teacherChoice < 1 || teacherChoice > teachers.Count)
+    {
+        Console.Write("Ogiltigt val. Välj lärare med ett giltigt nummer: ");
+    }
+
+    Console.WriteLine("\nTillgängliga kurser:");
+
+    for (int i = 0; i < courses.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {courses[i].CourseNumber} - {courses[i].Titel}");
+    }
+
+    Console.Write("Välj kurs: ");
+    int courseChoice;
+
+    while (!int.TryParse(Console.ReadLine(), out courseChoice) ||
+           courseChoice < 1 || courseChoice > courses.Count)
+    {
+        Console.Write("Ogiltigt val. Välj kurs med ett giltigt nummer: ");
+    }
+
+    Teacher teacher = teachers[teacherChoice - 1];
+    Course course = courses[courseChoice - 1];
+
+    teacher.AddCourse(course);
+
+    Console.WriteLine("Kursen har tilldelats läraren!");
+
+}
     public void AddEducationManager()
     {
          Console.WriteLine("\n--- Lägg till utbildningsledare ---");
