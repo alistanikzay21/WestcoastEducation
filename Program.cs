@@ -144,5 +144,25 @@ class Program
         courses.Add(course);
 
         Console.WriteLine("Kursen har lagts till!");
-    }  
+    }
+    
+    static void ListCourses()
+    {
+        Console.WriteLine("\n--- Kurser ---");
+
+        if (courses.Count == 0)
+        {
+            Console.WriteLine("Det finns inga kurser att visa");
+        }
+
+        else
+        {
+            foreach (Course course in courses)
+            {
+                Console.WriteLine($"\n{course}");
+            }
+        }
+    }
+    
+      
 }
