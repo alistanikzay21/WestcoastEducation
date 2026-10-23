@@ -297,8 +297,25 @@ public class EducationService
     administrators.Add(administrator);
 
     Console.WriteLine("Administratören har lagts till!");
-
 }
+
+    public void ListAdministrators()
+{
+    Console.WriteLine("\n--- Administratörer ---");
+
+    if (administrators.Count == 0)
+    {
+        Console.WriteLine("Det finns inga administratörer att visa.");
+        return;
+    }
+
+    foreach (Administrator administrator in administrators)
+    {
+        Console.WriteLine();
+        Console.WriteLine(administrator);
+    }
+}
+
     private static string ReadRequiredText(string prompt)
     {
         Console.Write(prompt);
