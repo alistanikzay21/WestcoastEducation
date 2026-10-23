@@ -238,7 +238,25 @@ public class EducationService
 
         Console.WriteLine("Utbildningschefen har lagts till!");
     }
+    public void ListEducationManagers()
+    {
 
+    Console.WriteLine("\n--- Utbildningschefer ---");
+
+    if (educationManagers.Count == 0)
+
+    {
+        Console.WriteLine("Det finns inga utbildningschefer att visa.");
+        return;
+    }
+
+    foreach (EducationManager educationManager in educationManagers)
+
+    {
+        Console.WriteLine();
+        Console.WriteLine(educationManager);
+    }
+}
     private static string ReadRequiredText(string prompt)
     {
         Console.Write(prompt);
