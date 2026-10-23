@@ -186,19 +186,9 @@ public class EducationService
 
     public void AddEducationManager()
     {
-         Console.WriteLine("\n--- Lägg till utbildningschef ---");
+         Console.WriteLine("\n--- Lägg till utbildningsledare ---");
 
-        Person person = new()
-        {
-
-        FirstName = ReadRequiredText("Förnamn: "),
-        LastName = ReadRequiredText("Efternamn: "),
-        PhoneNumber = ReadRequiredText("Telefonnummer: "),
-        PersonalNumber = ReadRequiredText("Personnummer: "),
-        Adress = ReadRequiredText("Adress: "),
-        PostalCode = ReadRequiredText("Postnummer: "),
-        City = ReadRequiredText("Ort: ")
-        };
+        Person person = ReadPersonInformation();
 
         string knowledgeArea = ReadRequiredText("Kunskapsområde: ");
 
@@ -244,16 +234,7 @@ public class EducationService
 {
     Console.WriteLine("\n--- Lägg till administratör ---");
 
-    Person person = new()
-    {
-        FirstName = ReadRequiredText("Förnamn: "),
-        LastName = ReadRequiredText("Efternamn: "),
-        PhoneNumber = ReadRequiredText("Telefonnummer: "),
-        PersonalNumber = ReadRequiredText("Personnummer: "),
-        Adress = ReadRequiredText("Adress: "),
-        PostalCode = ReadRequiredText("Postnummer: "),
-        City = ReadRequiredText("Ort: ")
-    };
+    Person person = ReadPersonInformation();
 
     string knowledgeArea = ReadRequiredText("Kunskapsområde: ");
 
