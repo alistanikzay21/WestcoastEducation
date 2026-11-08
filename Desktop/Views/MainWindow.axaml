@@ -1,0 +1,411 @@
+
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Desktop.ViewModels"
+        xmlns:models="using:Desktop.Models"
+        x:Class="Desktop.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Width="1100"
+        Height="750"
+        MinWidth="850"
+        MinHeight="600"
+        Title="Westcoast Education"
+        Background="{DynamicResource PageBackground}">
+
+    
+<Window.Resources>
+    <SolidColorBrush x:Key="PageBackground">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="SidebarBackground">#F3F3F3</SolidColorBrush>
+    <SolidColorBrush x:Key="TextColor">#222222</SolidColorBrush>
+    <SolidColorBrush x:Key="SecondaryText">#666666</SolidColorBrush>
+
+    <SolidColorBrush x:Key="InputBackground">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="InputBorder">#AAAAAA</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonBackground">#EEEEEE</SolidColorBrush>
+</Window.Resources>
+
+<Window.Styles>
+
+    <Style Selector="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+    </Style>
+
+    <Style Selector="TextBox">
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+        <Setter Property="Background" Value="{DynamicResource InputBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource InputBorder}" />
+    </Style>
+
+    <Style Selector="Button">
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+        <Setter Property="Background" Value="{DynamicResource ButtonBackground}" />
+    </Style>
+
+    <Style Selector="ListBox">
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+        <Setter Property="Background" Value="{DynamicResource InputBackground}" />
+    </Style>
+
+    <Style Selector="ListBoxItem">
+        <Setter Property="Foreground" Value="{DynamicResource TextColor}" />
+    </Style>
+
+</Window.Styles>
+
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="220,*">
+
+        <!-- MENY -->
+
+        <Border Grid.Column="0"
+                Background="{DynamicResource SidebarBackground}"
+                Padding="15">
+
+            <StackPanel Spacing="15">
+
+                <TextBlock Text="Westcoast Education"
+                           FontSize="17"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource TextColor}"
+                           TextWrapping="Wrap"
+                           Margin="0,5,0,20" />
+
+                <Button Content="Kurser"
+                        Command="{Binding ShowCoursesCommand}"
+                        HorizontalAlignment="Stretch" />
+
+                <Button Content="Studenter"
+                        Command="{Binding ShowStudentsCommand}"
+                        HorizontalAlignment="Stretch" />
+
+                <Button Content="Lärare"
+                        Command="{Binding ShowTeachersCommand}"
+                        HorizontalAlignment="Stretch" />
+
+            </StackPanel>
+        </Border>
+
+        <!-- HUVUDINNEHÅLL -->
+
+        <Grid Grid.Column="1"
+              Margin="25">
+
+            <!-- KURSER -->
+
+            <ScrollViewer IsVisible="{Binding IsCoursesVisible}">
+                <StackPanel Spacing="15">
+
+                    <TextBlock Text="Kurser"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource TextColor}" />
+
+                    <TextBlock Text="Lista kurser"
+                               FontSize="18"
+                               FontWeight="Bold" />
+
+                    <Button Content="Hämta kurser"
+                            Command="{Binding LoadCoursesCommand}"
+                            HorizontalAlignment="Left" />
+
+                    <ListBox ItemsSource="{Binding Courses}"
+                             MaxHeight="250"
+                             Background="Transparent">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:Course">
+                                <Grid ColumnDefinitions="*,Auto"
+                                      Margin="5">
+
+                                    <StackPanel Spacing="3">
+                                        <TextBlock Text="{Binding Title}"
+                                                   FontWeight="Bold" />
+                                        <TextBlock Text="{Binding CourseNumber}" />
+                                        <TextBlock Text="{Binding CourseType}" />
+                                        <TextBlock Text="{Binding Length}" />
+                                    </StackPanel>
+
+                                    <Button Grid.Column="1"
+                                            Content="Radera"
+                                            VerticalAlignment="Center"
+                                            x:CompileBindings="False"
+                                            Command="{Binding $parent[Window].DataContext.DeleteCourseCommand}"
+                                            CommandParameter="{Binding}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Text="Lägg till kurs"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,10,0,0" />
+
+                    <Grid ColumnDefinitions="*,*"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                          ColumnSpacing="15"
+                          RowSpacing="8">
+
+                        <StackPanel Grid.Row="0" Spacing="3">
+                            <TextBlock Text="Kursnummer" />
+                            <TextBox Text="{Binding CourseNumberInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Kursnamn" />
+                            <TextBox Text="{Binding TitleInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Spacing="3">
+                            <TextBlock Text="Kurslängd" />
+                            <TextBox Text="{Binding LengthInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Längdenhet (Week eller Days)" />
+                            <TextBox Text="{Binding LengthUnitInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Spacing="3">
+                            <TextBlock Text="Kurstyp (Classroom eller Distance)" />
+                            <TextBox Text="{Binding CourseTypeInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Startdatum" />
+                            <TextBox Text="{Binding StartDateInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Spacing="3">
+                            <TextBlock Text="Slutdatum" />
+                            <TextBox Text="{Binding EndDateInput}" />
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Button Content="Lägg till kurs"
+                            Command="{Binding AddCourseCommand}"
+                            HorizontalAlignment="Left" />
+
+                    <TextBlock Text="{Binding StatusMessage}"
+                               Foreground="{DynamicResource SecondaryText}" />
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- STUDENTER -->
+
+            <ScrollViewer IsVisible="{Binding IsStudentsVisible}">
+                <StackPanel Spacing="15">
+
+                    <TextBlock Text="Studenter"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource TextColor}" />
+
+                    <TextBlock Text="Lista studenter"
+                               FontSize="18"
+                               FontWeight="Bold" />
+
+                    <Button Content="Hämta studenter"
+                            Command="{Binding LoadStudentsCommand}"
+                            HorizontalAlignment="Left" />
+
+                    <ListBox ItemsSource="{Binding Students}"
+                             MaxHeight="250"
+                             Background="Transparent">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:Student">
+                                <StackPanel Margin="5" Spacing="3">
+                                    <TextBlock FontWeight="Bold">
+                                        <Run Text="{Binding FirstName}" />
+                                        <Run Text=" " />
+                                        <Run Text="{Binding LastName}" />
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding PersonalNumber}" />
+                                    <TextBlock Text="{Binding PhoneNumber}" />
+                                    <TextBlock Text="{Binding Address}" />
+                                    <TextBlock Text="{Binding PostalCode}" />
+                                    <TextBlock Text="{Binding City}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Text="Lägg till student"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,10,0,0" />
+
+                    <Grid ColumnDefinitions="*,*"
+                          RowDefinitions="Auto,Auto,Auto,Auto"
+                          ColumnSpacing="15"
+                          RowSpacing="8">
+
+                        <StackPanel Grid.Row="0" Spacing="3">
+                            <TextBlock Text="Förnamn" />
+                            <TextBox Text="{Binding FirstNameInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Efternamn" />
+                            <TextBox Text="{Binding LastNameInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Spacing="3">
+                            <TextBlock Text="Telefonnummer" />
+                            <TextBox Text="{Binding PhoneNumberInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Personnummer" />
+                            <TextBox Text="{Binding PersonalNumberInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Spacing="3">
+                            <TextBlock Text="Adress" />
+                            <TextBox Text="{Binding AddressInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Postnummer" />
+                            <TextBox Text="{Binding PostalCodeInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Spacing="3">
+                            <TextBlock Text="Ort" />
+                            <TextBox Text="{Binding CityInput}" />
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Button Content="Lägg till student"
+                            Command="{Binding AddStudentCommand}"
+                            HorizontalAlignment="Left" />
+
+                    <TextBlock Text="{Binding StatusMessage}"
+                               Foreground="{DynamicResource SecondaryText}" />
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- LÄRARE -->
+
+            <ScrollViewer IsVisible="{Binding IsTeachersVisible}">
+                <StackPanel Spacing="15">
+
+                    <TextBlock Text="Lärare"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource TextColor}" />
+
+                    <TextBlock Text="Lista lärare"
+                               FontSize="18"
+                               FontWeight="Bold" />
+
+                    <Button Content="Hämta lärare"
+                            Command="{Binding LoadTeachersCommand}"
+                            HorizontalAlignment="Left" />
+
+                    <ListBox ItemsSource="{Binding Teachers}"
+                             SelectedItem="{Binding SelectedTeacher}"
+                             MaxHeight="200"
+                             Background="Transparent">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:Teacher">
+                                <StackPanel Margin="5" Spacing="3">
+                                    <TextBlock FontWeight="Bold">
+                                        <Run Text="{Binding FirstName}" />
+                                        <Run Text=" " />
+                                        <Run Text="{Binding LastName}" />
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding PhoneNumber}" />
+                                    <TextBlock Text="{Binding KnowledgeArea}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Text="Hantera kompetensområde"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,10,0,0" />
+
+                    <TextBlock Text="Välj en lärare i listan ovan och ändra kompetensområdet." />
+
+                    <TextBox Text="{Binding KnowledgeAreaInput}" />
+
+                    <Button Content="Ändra kompetensområde"
+                            Command="{Binding ChangeTeacherKnowledgeAreaCommand}"
+                            HorizontalAlignment="Left" />
+
+                    <TextBlock Text="Lägg till lärare"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,10,0,0" />
+
+                    <Grid ColumnDefinitions="*,*"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                          ColumnSpacing="15"
+                          RowSpacing="8">
+
+                        <StackPanel Grid.Row="0" Spacing="3">
+                            <TextBlock Text="Förnamn" />
+                            <TextBox Text="{Binding TeacherFirstNameInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Efternamn" />
+                            <TextBox Text="{Binding TeacherLastNameInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Spacing="3">
+                            <TextBlock Text="Telefonnummer" />
+                            <TextBox Text="{Binding TeacherPhoneNumberInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Personnummer" />
+                            <TextBox Text="{Binding TeacherPersonalNumberInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Spacing="3">
+                            <TextBlock Text="Adress" />
+                            <TextBox Text="{Binding TeacherAddressInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Postnummer" />
+                            <TextBox Text="{Binding TeacherPostalCodeInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Spacing="3">
+                            <TextBlock Text="Ort" />
+                            <TextBox Text="{Binding TeacherCityInput}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="1" Spacing="3">
+                            <TextBlock Text="Kompetensområde" />
+                            <TextBox Text="{Binding KnowledgeAreaInput}" />
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Button Content="Lägg till lärare"
+                            Command="{Binding AddTeacherCommand}"
+                            HorizontalAlignment="Left" />
+
+                    <TextBlock Text="{Binding StatusMessage}"
+                               Foreground="{DynamicResource SecondaryText}" />
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </Grid>
+    </Grid>
+</Window>
