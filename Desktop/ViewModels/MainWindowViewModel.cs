@@ -9,7 +9,6 @@ namespace Desktop.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsCoursesVisible))]
     [NotifyPropertyChangedFor(nameof(IsStudentsVisible))]
@@ -148,8 +147,8 @@ public partial class MainViewModel : ViewModelBase
             CourseNumberInput = "";
             TitleInput = "";
             LengthInput = "";
-            LengthUnitInput = "Week";
-            CourseTypeInput = "Classroom";
+            LengthUnitInput = "";
+            CourseTypeInput = "";
             StartDateInput = "";
             EndDateInput = "";
 
